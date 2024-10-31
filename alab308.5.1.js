@@ -104,3 +104,46 @@ const people = [
   const averageAge = sumOfAges / people.length;
   console.log("Average Age:", averageAge);
   
+  /*--------------------Part 3--------------------*/ 
+// Function to increment the age field of an object
+function incrementAge(obj) {
+    // Check if the age field exists; if not, set it to 0
+    if (!obj.age) {
+        obj.age = 0;
+    }
+    // Increment the age
+    obj.age += 1;
+    
+    // Update the updated_at field with the current date
+    obj.updated_at = new Date();
+}
+
+// Function to create a copy of the object, increment the age of the copy, and return it
+function incrementAgeCopy(obj) {
+    // Create a shallow copy of the object
+    const copy = { ...obj };
+
+    // Check if the age field exists in the copy; if not, set it to 0
+    if (!copy.age) {
+        copy.age = 0;
+    }
+    // Increment the age
+    copy.age += 1;
+
+    // Update the updated_at field with the current date
+    copy.updated_at = new Date();
+
+    return copy; // Return the modified copy
+}
+
+// Example usage:
+const person = { name: "Alice" };
+
+// Increment age directly
+incrementAge(person);
+console.log(person); // { name: 'Alice', age: 1, updated_at: [Date] }
+
+// Increment age in a copy
+const newPerson = incrementAgeCopy(person);
+console.log(newPerson); // { name: 'Alice', age: 2, updated_at: [Date] }
+console.log(person); // { name: 'Alice', age: 1, updated_at: [Date] }
